@@ -24,7 +24,7 @@ export const Navbar = () => {
         P
        </Text>
        <Text color="white" h4 >
-        okemon
+        okémon
        </Text>
        <Spacer css={{flex:1}}></Spacer>
        <Text color="white">

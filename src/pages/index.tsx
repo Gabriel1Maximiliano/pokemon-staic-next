@@ -1,18 +1,33 @@
-
+import { GetStaticProps } from 'next'
 import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import { Button } from '@nextui-org/react'
 import { Layout } from '../../components/layouts';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home(props:any) {
+  console.log(props)
   return (
     
     <Layout title={'Listado de Pokemon'} >
-     <h1>Hola Mundo</h1>
-     <Button color='warning' >Click me</Button>
+    <ul>
+      <li>Pokémon</li>
+      <li>Pokémon</li>
+      <li>Pokémon</li>
+      <li>Pokémon</li>
+      <li>Pokémon</li>
+      <li>Pokémon</li>
+    </ul>
      </Layout>
  
   )
+}
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  console.log('hola mundo')
+
+  return {
+    props: {
+      name:'Lola'
+    }
+  }
 }
