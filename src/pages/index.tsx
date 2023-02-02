@@ -1,6 +1,9 @@
 import { GetStaticProps } from 'next'
 import { Inter } from '@next/font/google'
 import { Layout } from '../../components/layouts';
+import pokeAPi from '../../api/pokeAPi';
+import { PokemonListResponse } from '../../interfaces/pokemon-list';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,11 +26,14 @@ export default function Home(props:any) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  console.log('hola mundo')
-
+  
+const resp = await pokeAPi.get<PokemonListResponse>('/pokemon?limit=151');
+console.log(resp)
   return {
     props: {
-      name:'Lola'
+      pokemons:resp.data.results
     }
   }
 }
+
+
