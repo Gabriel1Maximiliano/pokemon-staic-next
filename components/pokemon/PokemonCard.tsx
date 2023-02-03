@@ -21,14 +21,14 @@ const [isLoading, setIsloading] = useState(false);
 
   const router = useRouter();
 
-  const handlePokemonRootId = () => {
-    router.push(`/pokemon/${pokemon.id}`)
+  const handlePokemonRootByName = () => {
+    router.push(`/name/${pokemon.name}`)
   }
   return (
     <Grid xs={6} sm={3} md={2} xl={1} key={pokemon.id}>
       <Card
         isHoverable isPressable
-        onPress={handlePokemonRootId}
+        onPress={handlePokemonRootByName}
       >
         <Card.Body css={{ p: 1 }}>
           {

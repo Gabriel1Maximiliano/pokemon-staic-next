@@ -2,10 +2,10 @@ import { Layout } from 'components/layouts';
 import React, { FC, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { pokeAPi } from 'api';
-import { Pokemon } from '../../../interfaces/pokemon-full';
+import { Pokemon, Sprites } from '../../../interfaces/pokemon-full';
 import { Grid, Card,Text, Button, Container, Image } from '@nextui-org/react';
 import { Loading, Spacer } from "@nextui-org/react";
-import { existPokemonInLocalStorage, toggleFavoritesLocalStorage } from 'utilities';
+import { existPokemonInLocalStorage, getPokemonData, toggleFavoritesLocalStorage } from 'utilities';
 import confetti from 'canvas-confetti';
 
 interface Props {
@@ -131,15 +131,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { name }= params as { name:string };
 
-   const resp = await pokeAPi.get<Pokemon>(`/pokemon/${ name }`);
-
-
-  
+  const pokemon = await getPokemonData( name );
+ 
   return {
     props: {
-      pokemon:resp.data
+      pokemon
     }
   }
 }
 
 export default PokemonByNamePage 
+
+

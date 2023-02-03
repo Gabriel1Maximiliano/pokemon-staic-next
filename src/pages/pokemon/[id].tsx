@@ -7,6 +7,7 @@ import { Grid, Card,Text, Button, Container, Image } from '@nextui-org/react';
 import { Loading, Spacer } from "@nextui-org/react";
 import { existPokemonInLocalStorage, toggleFavoritesLocalStorage } from 'utilities';
 import confetti from 'canvas-confetti';
+import { getPokemonData } from 'utilities';
 
 interface Props {
   pokemon:Pokemon;
@@ -123,13 +124,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { id }= params as { id:string };
 
-   const resp = await pokeAPi.get<Pokemon>(`/pokemon/${ id }`);
-
-
+  const pokemon = await getPokemonData( id )
   
   return {
     props: {
-      pokemon:resp.data
+      pokemon
     }
   }
 }
