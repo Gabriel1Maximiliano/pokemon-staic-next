@@ -4,6 +4,8 @@ import { useState }from 'react';
 import { NoFavorites } from 'components/ui/NoFavorites';
 import { Layout } from '../../../components/layouts/Layout';
 
+
+
 import { pokemons } from 'utilities';
 import { FavoritePokemon } from 'components/pokemon';
 

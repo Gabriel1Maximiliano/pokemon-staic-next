@@ -1,12 +1,12 @@
 import { Layout } from 'components/layouts';
-import React, { FC, useState,useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { pokeAPi } from 'api';
 import { Pokemon } from '../../../interfaces/pokemon-full';
 import { Grid, Card,Text, Button, Container, Image } from '@nextui-org/react';
 import { Loading, Spacer } from "@nextui-org/react";
 import { existPokemonInLocalStorage, toggleFavoritesLocalStorage } from 'utilities';
-
+import confetti from 'canvas-confetti';
 
 interface Props {
   pokemon:Pokemon;
@@ -25,6 +25,18 @@ const [isInFavorites, setIsInFavorites] = useState(existPokemonInLocalStorage( p
 const handleOnToggle = ()=>{
   toggleFavoritesLocalStorage( pokemon.id );
   setIsInFavorites(!isInFavorites);
+  if( isInFavorites ) return;
+
+  confetti({
+    zIndex:999,
+    particleCount:100,
+    spread:160,
+    angle:-100,
+    origin:{
+      x:1,
+      y:0
+    }
+  })
 }
 
 
