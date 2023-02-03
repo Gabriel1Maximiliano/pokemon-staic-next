@@ -5,6 +5,7 @@ import { pokeAPi } from 'api';
 import { Pokemon } from '../../../interfaces/pokemon-full';
 import { Grid, Card,Text, Button, Container, Image } from '@nextui-org/react';
 import { Loading, Spacer } from "@nextui-org/react";
+import { toggleFavoritesLocalStorage } from 'utilities';
 
 interface Props {
   pokemon:Pokemon;
@@ -19,7 +20,7 @@ const [isLoading, setIsloading] = useState(false);
 }, 1500);
 
 const handleOnToggle = ()=>{
-console.log('soy toggle')
+  toggleFavoritesLocalStorage( pokemon.id )
 }
   return (
   <Layout title={ pokemon.name }>
