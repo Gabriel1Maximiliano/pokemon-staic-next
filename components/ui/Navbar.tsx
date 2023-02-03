@@ -25,23 +25,20 @@ export const Navbar = () => {
          </Link>
          <Link href='/' passHref legacyBehavior>
        <NextUiLink>
-       <Text color="white" h2>
-        P
-       </Text>
-       <Text color="white" h4 >
-        okémon
-       </Text>
-       </NextUiLink>
+        <Text color="white" h2>
+          P
+        </Text>
+        <Text color="white" h4 >
+          okémon
+        </Text>
+        </NextUiLink>
        </Link>
        <Spacer css={{flex:1}}></Spacer>
-       <Text color="white">
         <Link href="/favorites"  passHref legacyBehavior>
           <NextUiLink css={{ marginRight:'10px' }} >
-          <Text color="white" h4 >Favoritos</Text>
+          <Text color='white'h4>Favoritos</Text>
           </NextUiLink>
         </Link>
-        
-       </Text>
         </div>
   )
 }

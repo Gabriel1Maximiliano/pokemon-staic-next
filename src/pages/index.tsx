@@ -18,7 +18,7 @@ export default function Home({ pokemon }:Props) {
   return (
 
     <Layout title={'Listado de Pokemon'} >
-      <Grid.Container gap={2} justify="flex-start">
+      <Grid.Container gap={2} justify="flex-start" >
         {
 
           pokemon.map((pokemon) => (
