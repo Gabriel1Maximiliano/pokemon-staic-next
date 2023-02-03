@@ -1,11 +1,12 @@
 import { Layout } from 'components/layouts';
-import React, { FC, useState } from 'react';
+import React, { FC, useState,useEffect } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { pokeAPi } from 'api';
 import { Pokemon } from '../../../interfaces/pokemon-full';
 import { Grid, Card,Text, Button, Container, Image } from '@nextui-org/react';
 import { Loading, Spacer } from "@nextui-org/react";
-import { toggleFavoritesLocalStorage } from 'utilities';
+import { existPokemonInLocalStorage, toggleFavoritesLocalStorage } from 'utilities';
+
 
 interface Props {
   pokemon:Pokemon;
@@ -15,13 +16,18 @@ const PokemonPage:FC<Props> = ({pokemon}) => {
  
 const [isLoading, setIsloading] = useState(false);
 
+const [isInFavorites, setIsInFavorites] = useState(existPokemonInLocalStorage( pokemon.id ));
+
  setTimeout(function(){
   setIsloading(true);
 }, 1500);
 
 const handleOnToggle = ()=>{
-  toggleFavoritesLocalStorage( pokemon.id )
+  toggleFavoritesLocalStorage( pokemon.id );
+  setIsInFavorites(!isInFavorites);
 }
+
+
   return (
   <Layout title={ pokemon.name }>
     <Grid.Container css={{ marginTop:'0px'}} gap={ 2 } >
@@ -44,8 +50,12 @@ const handleOnToggle = ()=>{
       <Card>
         <Card.Header css={{ display:'flex', justifyContent:'space-between' }}>
           <Text h1 transform='capitalize' >{pokemon.name}</Text>
-          <Button color='gradient' ghost onPress={handleOnToggle}>
-            Guardar en Favoritos
+          <Button color='gradient'
+           ghost={ isInFavorites } 
+           onPress={handleOnToggle}
+           >
+            { isInFavorites ? 'En favoritos':'Cargar en favoritos' }
+           
           </Button>
         </Card.Header>
         <Card.Body>
