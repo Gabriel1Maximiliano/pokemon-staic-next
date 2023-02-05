@@ -110,9 +110,7 @@ const handleOnToggle = ()=>{
 
 
 export const getStaticPaths:GetStaticPaths = async(ctx)=> {
-  const pokemon80=[...Array(80)].map(( value,index )=>`${ index + 1 }`);
 
- 
  const { data } = await pokeAPi.get<Pokemon>(`/pokemon?limit=80`);
 
  
@@ -127,17 +125,20 @@ export const getStaticPaths:GetStaticPaths = async(ctx)=> {
     fallback: 'blocking',
   }
 }
-export const getStaticProps: any = async ({ params }:any) => {
+export const getStaticProps: GetStaticProps = async ({ params }:any) => {
 
   const { name }= params as { name:string };
 
   const pokemon = await getPokemonData( name );
  
   if( !pokemon ){
-
+    
     return {
-      redirect:'/',
-      permanent:false
+     redirect:{
+      destination:'/',
+      permanent: false
+     }
+     
     }
 
   }

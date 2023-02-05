@@ -1,3 +1,4 @@
+import { SSRProvider } from "@react-aria/ssr";
 import Head from "next/head"
 
 import { FC } from "react"
@@ -25,12 +26,14 @@ export const Layout:FC<Props> = ({children,title}:Props) => {
         <meta property="og:description" content={`Esta es la página sobre ${ title }`} />
         <meta property="og:image" content={`${ origin }/img/banner.png`} />
     </Head>
+  <SSRProvider>
     <Navbar />
     <main style={{
         padding:'0px 20px'
     }} >
         { children }
     </main>
+    </SSRProvider>
   </>
   )
 }

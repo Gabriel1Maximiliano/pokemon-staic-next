@@ -3,7 +3,7 @@ import { SmallPokemon } from 'interfaces';
 import { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 
-// (  <><Spacer /><Loading size="xl" /><Spacer /></>)
+
 
 interface Props {
   pokemon: SmallPokemon;
@@ -40,14 +40,15 @@ const [isLoading, setIsloading] = useState(false);
               objectFit="scale-down"
             ></Card.Image>):(  <><Spacer /><Loading size="xl" /><Spacer /></>)
           }
-         
           </Card.Body>
+        
 
 
 
         <Card.Footer>
           <Row justify='space-between' >
             <Text transform='capitalize' >{pokemon.name}</Text>
+            <Text>{pokemon.id}</Text>
           </Row>
         </Card.Footer>
       </Card>
